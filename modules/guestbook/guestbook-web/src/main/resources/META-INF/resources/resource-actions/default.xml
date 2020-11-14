@@ -26,6 +26,22 @@ Mapping 7.0.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_7
         </permissions>
     </portlet-resource>
 
-
+    <portlet-resource>
+        <portlet-name>com_liferay_docs_guestbook_portlet_GuestbookPortlet</portlet-name>
+        <permissions>
+            <supports>
+                <action-key>ADD_TO_PAGE</action-key>
+                <action-key>CONFIGURATION</action-key>
+                <action-key>VIEW</action-key>
+            </supports>
+            <site-member-defaults>
+                <action-key>VIEW</action-key>
+            </site-member-defaults>
+            <guest-defaults>
+                <action-key>VIEW</action-key>
+            </guest-defaults>
+            <guest-unsupported />
+        </permissions>
+    </portlet-resource>
 
 </resource-action-mapping>
