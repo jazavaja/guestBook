@@ -28,12 +28,13 @@
 <aui:nav cssClass="nav-tabs">
 
 	<%
+		System.out.println("here 1");
 		List<Guestbook> guestbooks = GuestbookLocalServiceUtil.getGuestbooks(scopeGroupId);
 
 		for (int i = 0; i < guestbooks.size(); i++) {
 
 			Guestbook curGuestbook = (Guestbook) guestbooks.get(i);
-			String cssClass = StringPool.BLANK;
+			String cssClass = "";
 
 			if (curGuestbook.getGuestbookId() == guestbookId) {
 				cssClass = "active";

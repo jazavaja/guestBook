@@ -12,13 +12,17 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 public class EntryPermission {
 
     public static boolean contains(
-            PermissionChecker permissionChecker, Entry entry, String actionId) throws PortalException {
+            PermissionChecker permissionChecker,
+            Entry entry,
+            String actionId) throws PortalException {
 
         return _EntryModelResourcePermission.contains(permissionChecker, entry, actionId);
     }
 
     public static boolean contains(
-            PermissionChecker permissionChecker, long entryId, String actionId) throws PortalException {
+            PermissionChecker permissionChecker,
+            long entryId,
+            String actionId) throws PortalException {
 
         return _EntryModelResourcePermission.contains(permissionChecker, entryId, actionId);
     }
