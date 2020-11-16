@@ -5,9 +5,9 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.docs.guestbook.service.permission.GuestbookModelPermission" %>
-<%@ page import="com.liferay.docs.guestbook.service.permission.GuestbookPermission" %>
-<%@ page import="com.liferay.docs.guestbook.service.permission.EntryPermission" %>
+<%@ page import="com.liferay.docs.guestbook.web.internal.security.permission.resource.GuestbookModelPermission" %>
+<%@ page import="com.liferay.docs.guestbook.web.internal.security.permission.resource.GuestbookPermission" %>
+<%@ page import="com.liferay.docs.guestbook.web.internal.security.permission.resource.EntryPermission" %>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.security.permission.ActionKeys" %>
 
