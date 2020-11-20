@@ -14,13 +14,21 @@
 
 package com.liferay.docs.guestbook.service.http;
 
+import com.liferay.docs.guestbook.service.GuestbookServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.security.auth.HttpPrincipal;
+import com.liferay.portal.kernel.service.http.TunnelUtil;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
+
 /**
  * Provides the HTTP utility for the
- * <code>com.liferay.docs.guestbook.service.GuestbookServiceUtil</code> service
+ * <code>GuestbookServiceUtil</code> service
  * utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
- * <code>com.liferay.portal.kernel.security.auth.HttpPrincipal</code> parameter.
+ * <code>HttpPrincipal</code> parameter.
  *
  * <p>
  * The benefits of using the HTTP utility is that it is fast and allows for
@@ -42,4 +50,53 @@ package com.liferay.docs.guestbook.service.http;
  * @generated
  */
 public class GuestbookServiceHttp {
+
+	public static com.liferay.docs.guestbook.model.Guestbook addGuestbook(
+			HttpPrincipal httpPrincipal, long userId, String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				GuestbookServiceUtil.class, "addGuestbook",
+				_addGuestbookParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, userId, name, serviceContext);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.docs.guestbook.model.Guestbook)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(GuestbookServiceHttp.class);
+
+	private static final Class<?>[] _addGuestbookParameterTypes0 = new Class[] {
+		long.class, String.class,
+		com.liferay.portal.kernel.service.ServiceContext.class
+	};
+
 }

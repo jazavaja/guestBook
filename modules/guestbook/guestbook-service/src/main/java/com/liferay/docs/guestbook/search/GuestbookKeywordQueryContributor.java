@@ -14,16 +14,14 @@ import org.osgi.service.component.annotations.Reference;
         property = "indexer.class.name=com.liferay.docs.guestbook.model.Guestbook",
         service = KeywordQueryContributor.class
 )
-public class GuestbookKeywordQueryContributor
-        implements KeywordQueryContributor {
+public class GuestbookKeywordQueryContributor implements KeywordQueryContributor {
 
     @Override
     public void contribute(
             String keywords, BooleanQuery booleanQuery,
             KeywordQueryContributorHelper keywordQueryContributorHelper) {
 
-        SearchContext searchContext =
-                keywordQueryContributorHelper.getSearchContext();
+        SearchContext searchContext = keywordQueryContributorHelper.getSearchContext();
 
         queryHelper.addSearchLocalizedTerm(
                 booleanQuery, searchContext, Field.TITLE, false);

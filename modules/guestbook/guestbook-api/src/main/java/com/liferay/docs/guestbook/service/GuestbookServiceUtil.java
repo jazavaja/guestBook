@@ -37,6 +37,13 @@ public class GuestbookServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.docs.guestbook.service.impl.GuestbookServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.docs.guestbook.model.Guestbook addGuestbook(
+			long userId, String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addGuestbook(userId, name, serviceContext);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.

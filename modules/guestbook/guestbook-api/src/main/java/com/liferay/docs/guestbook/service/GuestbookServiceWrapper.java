@@ -30,6 +30,15 @@ public class GuestbookServiceWrapper
 		_guestbookService = guestbookService;
 	}
 
+	@Override
+	public com.liferay.docs.guestbook.model.Guestbook addGuestbook(
+			long userId, String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _guestbookService.addGuestbook(userId, name, serviceContext);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

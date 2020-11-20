@@ -14,10 +14,21 @@
 
 package com.liferay.docs.guestbook.service.impl;
 
+import com.liferay.docs.guestbook.constants.GuestbookConstants;
+import com.liferay.docs.guestbook.model.Guestbook;
+import com.liferay.docs.guestbook.service.GuestbookLocalService;
 import com.liferay.docs.guestbook.service.base.GuestbookServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
+import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
+import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import java.util.Date;
 
 /**
  * The implementation of the guestbook remote service.
@@ -40,5 +51,38 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class GuestbookServiceImpl extends GuestbookServiceBaseImpl {
+	public Guestbook addGuestbook(long userId, String name, ServiceContext serviceContext) throws PortalException {
+
+		if (_portletResourcePermission.contains(getPermissionChecker(), serviceContext.getScopeGroupId(), "ADD_ENTRY")){
+
+		}
+		return _guestbookLocalService.addGuestbook(userId, name, serviceContext);
+
+	}
+
+
+	@Reference(
+			target = "(model.class.name=com.liferay.docs.guestbook.model.Guestbook)",
+			unbind = "-")
+	protected void setEntryModelPermission(ModelResourcePermission<Guestbook> modelResourcePermission) {
+
+		_guestbookModelResourcePermission = modelResourcePermission;
+	}
+
+	private static ModelResourcePermission<Guestbook>_guestbookModelResourcePermission;
+
+	@Reference(
+			target="(resource.name=" + GuestbookConstants.RESOURCE_NAME + ")",
+			unbind="-"
+	)
+	protected void setPortletResourcePermission(PortletResourcePermission portletResourcePermission) {
+
+		_portletResourcePermission = portletResourcePermission;
+	}
+
+	private static PortletResourcePermission _portletResourcePermission;
+
+	@Reference
+	protected GuestbookLocalService _guestbookLocalService;
 
 }

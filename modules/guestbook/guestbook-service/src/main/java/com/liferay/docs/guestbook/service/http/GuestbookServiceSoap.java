@@ -14,9 +14,15 @@
 
 package com.liferay.docs.guestbook.service.http;
 
+import com.liferay.docs.guestbook.service.GuestbookServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * <code>com.liferay.docs.guestbook.service.GuestbookServiceUtil</code> service
+ * <code>GuestbookServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -54,4 +60,26 @@ package com.liferay.docs.guestbook.service.http;
  * @generated
  */
 public class GuestbookServiceSoap {
+
+	public static com.liferay.docs.guestbook.model.GuestbookSoap addGuestbook(
+			long userId, String name,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.liferay.docs.guestbook.model.Guestbook returnValue =
+				GuestbookServiceUtil.addGuestbook(userId, name, serviceContext);
+
+			return com.liferay.docs.guestbook.model.GuestbookSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(GuestbookServiceSoap.class);
+
 }
