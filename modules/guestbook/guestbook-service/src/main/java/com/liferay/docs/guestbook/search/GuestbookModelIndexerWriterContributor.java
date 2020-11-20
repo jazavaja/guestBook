@@ -53,7 +53,7 @@ public class GuestbookModelIndexerWriterContributor
             dynamicQueryBatchIndexingActionableFactory;
 
     @Reference
-    protected GuestbookEntryBatchReindexer EntryBatchReindexer;
+    protected com.liferay.docs.guestbook.search.EntryBatchReindexer EntryBatchReindexer;
 
     @Reference
     protected GuestbookLocalService guestbookLocalService;

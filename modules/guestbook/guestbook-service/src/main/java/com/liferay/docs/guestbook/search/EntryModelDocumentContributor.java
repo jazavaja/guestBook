@@ -27,6 +27,9 @@ public class EntryModelDocumentContributor
     @Override
     public void contribute(Document document, Entry entry) {
         try {
+
+            System.out.println("here is entry model document ");
+
             Locale defaultLocale = PortalUtil.getSiteDefaultLocale(
                     entry.getGroupId());
 

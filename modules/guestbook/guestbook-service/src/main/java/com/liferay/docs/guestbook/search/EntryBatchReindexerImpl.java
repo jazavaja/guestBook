@@ -10,8 +10,8 @@ import com.liferay.portal.search.indexer.IndexerWriter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(immediate = true, service = GuestbookEntryBatchReindexer.class)
-public class GuestbookEntryBatchReindexerImpl implements GuestbookEntryBatchReindexer {
+@Component(immediate = true, service = EntryBatchReindexer.class)
+public class EntryBatchReindexerImpl implements EntryBatchReindexer {
 
     @Override
     public void reindex(long guestbookId, long companyId) {

@@ -1,12 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.exception.SystemException" %>
-<%@ page import="com.liferay.portal.kernel.exception.PortalException" %>
-<%@ page import="com.liferay.portal.kernel.search.*" %>
-<%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="com.liferay.portal.kernel.log.LogFactoryUtil" %>
-<%@ page import="com.liferay.portal.kernel.log.Log" %>
 <%@include file="../init.jsp"%>
 
 <%
@@ -41,23 +32,33 @@
     </div>
 </aui:form>
 <%
-    SearchContext searchContext = SearchContextFactory.getInstance(request);
+    System.out.println("here 00");
 
+    SearchContext searchContext = SearchContextFactory.getInstance(request);
+    System.out.println(searchContext.getKeywords());
     searchContext.setKeywords(keywords);
+    System.out.println("here 12");
     searchContext.setAttribute("paginationType", "more");
+    System.out.println("here 13");
     searchContext.setStart(0);
+    System.out.println("here 14");
     searchContext.setEnd(10);
-    Indexer<Entry> indexer = IndexerRegistryUtil.getIndexer(Entry.class);
+    System.out.println("here 15");
+
+    Indexer indexer = IndexerRegistryUtil.getIndexer(Guestbook.class);
+    System.out.println("here 16");
+
+    System.out.println("indexer = " + indexer);
 
     Hits hits = indexer.search(searchContext);
-
+    System.out.println("here 17");
     List<Entry> entries = new ArrayList<Entry>();
+    System.out.println("here 18");
 
     for (int i = 0; i < hits.getDocs().length; i++) {
         Document doc = hits.doc(i);
 
-        long entryId = GetterUtil
-                .getLong(doc.get(Field.ENTRY_CLASS_PK));
+        long entryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
 
         Entry entry = null;
 
@@ -71,31 +72,10 @@
 
         entries.add(entry);
     }
+    System.out.println("here 19");
 
 %>
 
-<liferay-ui:search-container delta="10"
-                             emptyResultsMessage="no-entries-were-found"
-                             total="<%= entries.size() %>">
-    <liferay-ui:search-container-results
-            results="<%= entries %>"
-    />
-    <liferay-ui:search-container-row
-            className="com.liferay.docs.guestbook.model.Entry"
-            keyProperty="entryId" modelVar="entry" escapedModel="<%=true%>">
-
-        <liferay-ui:search-container-column-text name="guestbook" value="<%=guestbookMap.get(Long.toString(entry.getGuestbookId()))%>" />
-
-        <liferay-ui:search-container-column-text property="message" />
-
-        <liferay-ui:search-container-column-text property="name" />
-
-        <liferay-ui:search-container-column-jsp
-                path="/guestbookwebportlet/entry_actions.jsp"
-                align="right" />
-    </liferay-ui:search-container-row>
-    <liferay-ui:search-iterator />
-</liferay-ui:search-container>
 
 <%!
     private static Log _log = LogFactoryUtil.getLog("html.guestbookwebportlet.view_search_jsp");

@@ -15,13 +15,15 @@ import org.osgi.service.component.annotations.Reference;
         property = "indexer.class.name=com.liferay.docs.guestbook.model.Entry",
         service = ModelIndexerWriterContributor.class
 )
-public class GuestbookEntryModelIndexerWriterContributor
+public class EntryModelIndexerWriterContributor
         implements ModelIndexerWriterContributor<Entry> {
 
     @Override
     public void customize(
             BatchIndexingActionable batchIndexingActionable,
             ModelIndexerWriterDocumentHelper modelIndexerWriterDocumentHelper) {
+
+        System.out.println("here entry model indexer");
 
         batchIndexingActionable.setPerformActionMethod((Entry entry) -> {
             Document document = modelIndexerWriterDocumentHelper.getDocument(

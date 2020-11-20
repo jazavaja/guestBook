@@ -14,7 +14,7 @@ import org.osgi.service.component.annotations.Reference;
         property = "indexer.class.name=com.liferay.docs.guestbook.model.GuestbookEntry",
         service = KeywordQueryContributor.class
 )
-public class GuestbookEntryKeywordQueryContributor implements KeywordQueryContributor {
+public class EntryKeywordQueryContributor implements KeywordQueryContributor {
 
     @Override
     public void contribute(

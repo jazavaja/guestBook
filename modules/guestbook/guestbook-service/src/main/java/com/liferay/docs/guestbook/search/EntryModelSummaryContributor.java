@@ -14,7 +14,7 @@ import java.util.Locale;
         property = "indexer.class.name=com.liferay.docs.guestbook.model.GuestbookEntry",
         service = ModelSummaryContributor.class
 )
-public class GuestbookEntryModelSummaryContributor implements ModelSummaryContributor {
+public class EntryModelSummaryContributor implements ModelSummaryContributor {
 
     @Override
     public Summary getSummary(

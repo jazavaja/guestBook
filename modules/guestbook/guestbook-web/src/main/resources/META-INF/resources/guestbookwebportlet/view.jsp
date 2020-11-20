@@ -3,7 +3,6 @@
 <%
 	long guestbookId = Long.valueOf((Long) renderRequest.getAttribute("guestbookId"));
 	long groupId = Long.valueOf((Long) renderRequest.getAttribute("groupId"));
-	System.out.println("groupId here 2 = " + groupId);
 %>
 <liferay-ui:success key="entryAdded" message="entry-added" />
 
@@ -30,7 +29,6 @@
 <aui:nav cssClass="nav-tabs">
 
 	<%
-		System.out.println("here 1");
 		List<Guestbook> guestbooks = GuestbookLocalServiceUtil.getGuestbooks(scopeGroupId);
 
 		for (int i = 0; i < guestbooks.size(); i++) {

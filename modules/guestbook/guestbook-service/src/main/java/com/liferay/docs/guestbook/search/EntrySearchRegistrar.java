@@ -18,6 +18,8 @@ public class EntrySearchRegistrar {
     @Activate
     protected void activate(BundleContext bundleContext) {
 
+        System.out.println("here is entry search registrar");
+
         _serviceRegistration = modelSearchRegistrarHelper.register(
                Entry.class, bundleContext, modelSearchDefinition -> {
                     modelSearchDefinition.setDefaultSelectedFieldNames(
