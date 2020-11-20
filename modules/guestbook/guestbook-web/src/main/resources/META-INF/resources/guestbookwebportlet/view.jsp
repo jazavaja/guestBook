@@ -2,6 +2,8 @@
 
 <%
 	long guestbookId = Long.valueOf((Long) renderRequest.getAttribute("guestbookId"));
+	long groupId = Long.valueOf((Long) renderRequest.getAttribute("groupId"));
+	System.out.println("groupId here 2 = " + groupId);
 %>
 <liferay-ui:success key="entryAdded" message="entry-added" />
 
@@ -41,7 +43,7 @@
 			}
 
 			if (GuestbookPermission.contains(
-					permissionChecker, curGuestbook.getGuestbookId(), "VIEW")) {
+					permissionChecker, groupId, "VIEW")) {
 
 	%>
 
@@ -65,7 +67,7 @@
 
 <aui:button-row cssClass="guestbook-buttons">
 
-	<c:if test='<%= GuestbookPermission.contains(permissionChecker, guestbookId, "ADD_ENTRY") %>'>
+	<c:if test='<%= GuestbookPermission.contains(permissionChecker, groupId, "ADD_ENTRY") %>'>
 		<portlet:renderURL var="addEntryURL">
 			<portlet:param name="mvcPath" value="/guestbookwebportlet/edit_entry.jsp" />
 			<portlet:param name="guestbookId"

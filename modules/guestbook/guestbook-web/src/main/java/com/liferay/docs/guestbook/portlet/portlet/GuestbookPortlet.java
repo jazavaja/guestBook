@@ -159,6 +159,7 @@ public class GuestbookPortlet extends MVCPortlet {
             }
 
             renderRequest.setAttribute("guestbookId", guestbookId);
+            renderRequest.setAttribute("groupId",groupId);
         }
         catch (Exception e) {
             throw new PortletException(e);
